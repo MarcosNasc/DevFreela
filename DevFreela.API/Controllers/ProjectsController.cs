@@ -1,4 +1,5 @@
 ﻿using DevFreela.API.Models;
+using DevFreela.API.Persistence;
 using DevFreela.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -9,9 +10,10 @@ namespace DevFreela.API.Controllers
     [ApiController]
     public class ProjectsController : ControllerBase
     {
-        public ProjectsController()
+        private readonly DevFreelaDbContext _context;
+        public ProjectsController(DevFreelaDbContext context)
         {
-
+            _context = context;
         }
 
         [HttpGet]
