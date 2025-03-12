@@ -9,39 +9,26 @@ namespace DevFreela.API.Controllers
     [ApiController]
     public class ProjectsController : ControllerBase
     {
-        private readonly FreeLanceTotalCostConfig _config;
-        private readonly IConfigService _configService;
-
-        public ProjectsController(IOptions<FreeLanceTotalCostConfig> options,
-                                  IConfigService configService
-            )
+        public ProjectsController()
         {
-            _config = options.Value;
-            _configService = configService;
+
         }
 
         [HttpGet]
         public IActionResult Get(string search = "")
         {
-            return Ok(_configService.GetValue());
+            return Ok();
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            throw new Exception();
-
             return Ok();
         }
 
         [HttpPost]
         public IActionResult Post(CreateProjectInputModel model)
         {
-            if (model.TotalCost < _config.Minimum || model.TotalCost > _config.Maximum)
-            {
-                return BadRequest("Custo total fora dos limites");
-            }
-
             return CreatedAtAction(nameof(GetById), new { id = 1 }, model);
         }
 
