@@ -27,9 +27,9 @@ namespace DevFreela.API.Models
             Comments = comments.Select(c => c.Content).ToList();
         }
 
-        public static ProjectViewModel FromEntity(Project entity)
+        public static ProjectViewModel FromEntity(Project project)
         {
-            return new ProjectViewModel(entity.Id , entity.Title , entity.Description , entity.IdClient , entity.IdFreelancer , entity.client.FullName , entity.Freelancer.FullName , entity.TotalCost , entity.Comments);
+            return new ProjectViewModel(project.Id , project.Title , project.Description , project.IdClient , project.IdFreelancer , project.Client.FullName , project.Freelancer.FullName , project.TotalCost , project.Comments);
         }
     }
 }

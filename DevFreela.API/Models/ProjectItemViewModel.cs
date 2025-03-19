@@ -18,5 +18,10 @@ namespace DevFreela.API.Models
             FreelancertName = freelancertName;
             TotalCost = totalCost;
         }
+
+        public static ProjectItemViewModel FromEntity(Project project)
+        {
+            return new ProjectItemViewModel(project.Id , project.Title , project.Client.FullName , project.Freelancer.FullName , project.TotalCost);
+        }
     }
 }
