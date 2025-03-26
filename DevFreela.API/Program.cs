@@ -14,7 +14,12 @@ builder.Services.Configure<FreeLanceTotalCostConfig>(
 
 builder.Services.AddTransient<IConfigService, ConfigService>();
 
-builder.Services.AddDbContext<DevFreelaDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DevFreelaCs")));
+var connectionString = builder.Configuration.GetConnectionString("DevFreelaCs");
+
+builder.Services.AddDbContext<DevFreelaDbContext>(options => options.UseSqlServer(connectionString)
+           .EnableSensitiveDataLogging()
+           .LogTo(Console.WriteLine, LogLevel.Debug)
+);
 
 builder.Services.AddExceptionHandler<ApiExceptionHandler>();
 builder.Services.AddProblemDetails();
