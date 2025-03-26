@@ -24,7 +24,7 @@ namespace DevFreela.API.Controllers
                 .Include(p => p.Freelancer)
                 .Where(p => !p.IsDeleted ).ToList();
 
-            var model = projects.Select(ProjectItemViewModel.FromEntity).ToList();
+            var model = projects.Select(ProjectViewModel.FromEntity).ToList();
 
             return Ok(model);                                                         
         }
